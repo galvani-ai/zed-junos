@@ -57,7 +57,11 @@ de LLVM (`winget install LLVM.LLVM`) sont autorisés. Ils sont copiés dans
 
 ## Publication
 
-1. Pousser le dépôt sur GitHub et remplacer `repository` / `rev` dans `extension.toml`
-   (`repository = "https://github.com/<vous>/zed-junos"`).
-2. Remplir `authors` et le copyright de `LICENSE`.
-3. Ouvrir une PR sur [zed-industries/extensions](https://github.com/zed-industries/extensions).
+Dépôt : <https://github.com/galvani-ai/zed-junos>
+
+Pour une nouvelle version :
+
+1. Régénérer et tester la grammaire si elle a changé, committer, pousser.
+2. Mettre `rev` (dans `extension.toml`) sur ce commit et incrémenter `version`.
+3. Ouvrir une PR sur [zed-industries/extensions](https://github.com/zed-industries/extensions)
+   (sous-module `extensions/junos` + entrée dans `extensions.toml`).

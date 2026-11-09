@@ -2,14 +2,13 @@ id = "junos"
 name = "Junos"
 version = "0.1.0"
 schema_version = 1
-authors = ["CHANGEME <changeme@example.com>"]
+authors = ["galvani-ai <354643092+galvani-ai@users.noreply.github.com>"]
 description = "Juniper Junos configuration support (hierarchical and set formats)"
-repository = "https://github.com/CHANGEME/zed-junos"
+repository = "https://github.com/galvani-ai/zed-junos"
 
 [grammars.junos]
-# For local development Zed fetches the grammar from this repository itself.
-# Replace `rev` with the commit hash that contains grammar/src/parser.c.
-# Before publishing, change `repository` to the public GitHub URL.
-repository = "file:///E:/Projets/ExtensionJunos"
-rev = "b916539c74e25be0cf94c5dd1207d369caa45235"
+# `rev` must point to a commit that contains grammar/src/parser.c.
+# Update it after every grammar change (regenerate, commit, push).
+repository = "https://github.com/galvani-ai/zed-junos"
+rev = "6573e5a60b8e0a85c8f2cdff54b21099f128a3de"
 path = "grammar"

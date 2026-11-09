@@ -14,7 +14,7 @@
     "license": "MIT",
     "description": "Junos (Juniper) configuration grammar for tree-sitter",
     "links": {
-      "repository": "https://github.com/CHANGEME/zed-junos"
+      "repository": "https://github.com/galvani-ai/zed-junos"
     }
   },
   "bindings": {
