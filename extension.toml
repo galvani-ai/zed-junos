@@ -11,5 +11,5 @@ repository = "https://github.com/CHANGEME/zed-junos"
 # Replace `rev` with the commit hash that contains grammar/src/parser.c.
 # Before publishing, change `repository` to the public GitHub URL.
 repository = "file:///E:/Projets/ExtensionJunos"
-rev = "CHANGEME"
+rev = "b916539c74e25be0cf94c5dd1207d369caa45235"
 path = "grammar"
