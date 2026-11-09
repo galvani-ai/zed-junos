@@ -1,0 +1,99 @@
+==================
+Simple statements
+==================
+
+## Last commit: 2026-11-09 10:00:00 UTC by admin
+version 21.4R3.15;
+system {
+    host-name r1;
+}
+
+---
+
+(source_file
+  (comment)
+  (statement
+    name: (word)
+    arguments: (arguments (word)))
+  (statement
+    name: (word)
+    body: (block
+      (statement
+        name: (word)
+        arguments: (arguments (word))))))
+
+==================
+Strings, lists, status and comments
+==================
+
+/* uplink */
+inactive: interfaces {
+    ge-0/0/0 {
+        description "Uplink \"core\"";
+        unit 0 {
+            family inet {
+                address 192.0.2.1/24;
+            }
+        }
+    }
+}
+apply-groups [ re0 re1 ];
+root-authentication {
+    encrypted-password "$6$abc"; ## SECRET-DATA
+}
+
+---
+
+(source_file
+  (comment)
+  (statement
+    status: (status)
+    name: (word)
+    body: (block
+      (statement
+        name: (word)
+        body: (block
+          (statement
+            name: (word)
+            arguments: (arguments
+              (string (string_content) (escape_sequence) (string_content) (escape_sequence))))
+          (statement
+            name: (word)
+            arguments: (arguments (word))
+            body: (block
+              (statement
+                name: (word)
+                arguments: (arguments (word))
+                body: (block
+                  (statement
+                    name: (word)
+                    arguments: (arguments (word)))))))))))
+  (statement
+    name: (word)
+    arguments: (arguments (list (word) (word))))
+  (statement
+    name: (word)
+    body: (block
+      (statement
+        name: (word)
+        arguments: (arguments (string (string_content))))
+      (comment))))
+
+==================
+Set verbs used as values inside blocks
+==================
+
+policy-statement P {
+    then community set C1;
+}
+
+---
+
+(source_file
+  (statement
+    name: (word)
+    arguments: (arguments (word))
+    body: (block
+      (statement
+        name: (word)
+        arguments: (arguments (word) (word) (word))))))

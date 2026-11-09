@@ -1,0 +1,7 @@
+grammar/node_modules/
+grammar/build/
+grammar/*.wasm
+grammar/log.html
+grammar/target/
+/grammars/
+*.wasm

@@ -1,0 +1,104 @@
+## Last commit: 2026-11-09 10:00:00 UTC by admin
+version 21.4R3.15;
+groups {
+    re0 {
+        system {
+            host-name r1-re0;
+        }
+    }
+}
+apply-groups [ re0 re1 ];
+system {
+    host-name r1;
+    root-authentication {
+        encrypted-password "$6$abcdefgh$xyz"; ## SECRET-DATA
+    }
+    services {
+        ssh {
+            root-login deny;
+        }
+        netconf {
+            ssh;
+        }
+    }
+    syslog {
+        host 192.0.2.50 {
+            any notice;
+        }
+    }
+}
+/* Uplink to core */
+interfaces {
+    ge-0/0/0 {
+        description "Uplink \"core-1\"";
+        unit 0 {
+            family inet {
+                address 192.0.2.1/30;
+            }
+            family inet6 {
+                address 2001:db8::1/64;
+            }
+        }
+    }
+    inactive: ge-0/0/1 {
+        disable;
+    }
+    ae0 {
+        aggregated-ether-options {
+            lacp {
+                active;
+            }
+        }
+    }
+    lo0 {
+        unit 0 {
+            family inet {
+                filter {
+                    input PROTECT-RE;
+                }
+                address 10.255.0.1/32;
+            }
+        }
+    }
+}
+policy-options {
+    prefix-list MGMT {
+        10.0.0.0/8;
+    }
+    policy-statement EXPORT-BGP {
+        term LOOPBACK {
+            from {
+                protocol direct;
+                route-filter 10.255.0.0/16 orlonger;
+            }
+            then {
+                community set CUST;
+                accept;
+            }
+        }
+        then reject;
+    }
+    community CUST members target:65000:100;
+}
+firewall {
+    family inet {
+        filter PROTECT-RE {
+            term SSH {
+                from {
+                    source-prefix-list {
+                        MGMT;
+                    }
+                    protocol tcp;
+                    destination-port [ ssh netconf ];
+                }
+                then accept;
+            }
+            term DEFAULT {
+                then {
+                    count DROPPED;
+                    discard;
+                }
+            }
+        }
+    }
+}

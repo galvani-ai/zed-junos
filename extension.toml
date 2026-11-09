@@ -1,0 +1,15 @@
+id = "junos"
+name = "Junos"
+version = "0.1.0"
+schema_version = 1
+authors = ["CHANGEME <changeme@example.com>"]
+description = "Juniper Junos configuration support (hierarchical and set formats)"
+repository = "https://github.com/CHANGEME/zed-junos"
+
+[grammars.junos]
+# For local development Zed fetches the grammar from this repository itself.
+# Replace `rev` with the commit hash that contains grammar/src/parser.c.
+# Before publishing, change `repository` to the public GitHub URL.
+repository = "file:///E:/Projets/ExtensionJunos"
+rev = "CHANGEME"
+path = "grammar"

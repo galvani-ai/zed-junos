@@ -1,0 +1,44 @@
+==================
+Set commands
+==================
+
+set system host-name r1
+set interfaces ge-0/0/0 description "to core"
+deactivate interfaces ge-0/0/1
+set policy-options policy-statement P then community set C1
+delete protocols ospf
+
+---
+
+(source_file
+  (command
+    verb: (verb)
+    arguments: (arguments (word) (word) (word)))
+  (command
+    verb: (verb)
+    arguments: (arguments (word) (word) (word) (string (string_content))))
+  (command
+    verb: (verb)
+    arguments: (arguments (word) (word)))
+  (command
+    verb: (verb)
+    arguments: (arguments (word) (word) (word) (word) (word) (word) (word)))
+  (command
+    verb: (verb)
+    arguments: (arguments (word) (word))))
+
+==================
+Edit context banner
+==================
+
+[edit interfaces]
+set ge-0/0/0 unit 0 family inet address 192.0.2.1/24
+
+---
+
+(source_file
+  (edit_context
+    (arguments (word)))
+  (command
+    verb: (verb)
+    arguments: (arguments (word) (word) (word) (word) (word) (word) (word))))

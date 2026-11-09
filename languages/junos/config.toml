@@ -1,0 +1,13 @@
+name = "Junos"
+grammar = "junos"
+path_suffixes = ["junos", "jcfg", "jnpr"]
+first_line_pattern = '^(## Last (commit|changed)|version [0-9]|(set|delete|deactivate) (version|system|interfaces|groups|apply-groups|chassis|security|protocols|routing-options|policy-options|firewall|snmp|vlans|class-of-service|routing-instances|services) )'
+line_comments = ["# "]
+tab_size = 4
+hard_tabs = false
+word_characters = ["-", "/", ".", ":", "_"]
+brackets = [
+    { start = "{", end = "}", close = true, newline = true },
+    { start = "[", end = "]", close = true, newline = false },
+    { start = "\"", end = "\"", close = true, newline = false, not_in = ["string", "comment"] },
+]
