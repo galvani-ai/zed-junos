@@ -42,6 +42,19 @@ Ensuite dans Zed : palette de commandes → **zed: install dev extension** → c
 Après chaque modification de la grammaire : régénérer, committer, mettre à jour `rev`,
 puis **zed: rebuild dev extension** (ou réinstaller).
 
+### Windows avec Smart App Control
+
+Smart App Control bloque le `clang` de wasi-sdk que Zed télécharge pour compiler les
+grammaires. Contournement (sans désactiver SAC) : le `clang.exe` / `wasm-ld.exe` officiels
+de LLVM (`winget install LLVM.LLVM`) sont autorisés. Ils sont copiés dans
+`%LOCALAPPDATA%\Zed\extensions\build\wasi-sdk\bin\` avec la `wasi-sysroot` et
+`lib\clang\<version>` de wasi-sdk (même version majeure que LLVM), plus un `clang.cfg` :
+
+```
+--target=wasm32-wasip1
+--sysroot=<CFGDIR>/../share/wasi-sysroot
+```
+
 ## Publication
 
 1. Pousser le dépôt sur GitHub et remplacer `repository` / `rev` dans `extension.toml`
